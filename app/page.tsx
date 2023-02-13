@@ -1,9 +1,26 @@
-import React from "react";
+import fs from "fs";
+import Link from "next/link";
 
 type Props = {};
 
+const getPostsMetadata = () => {
+    const folder = "posts/";
+    const files = fs.readdirSync(folder);
+    const markdownPosts = files.filter((file) => file.endsWith(".md"));
+    const slugs = markdownPosts.map((file) => file.replace(".md", ""));
+    return slugs;
+};
+
 const HomePage = ({}: Props) => {
-    return <h1>Hello from NextJS 13!!</h1>;
+    const postMetadata = getPostsMetadata();
+    const postPreviews = postMetadata.map((slug) => (
+        <div key={slug}>
+            <Link href={`/posts/${slug}`}>
+                <h2>{slug}</h2>
+            </Link>
+        </div>
+    ));
+    return <div>{postPreviews}</div>;
 };
 
 export default HomePage;
