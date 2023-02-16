@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,7 +9,9 @@ export default function RootLayout({
     const header = (
         <header>
             <div>
-                <h1>Gabin&apos;s Blog</h1>
+                <Link href="/">
+                    <h1>Gabin&apos;s Blog</h1>
+                </Link>
                 <p>👨🏻‍💻 Welcome to my blog. 💫</p>
             </div>
         </header>
